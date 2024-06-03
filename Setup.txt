@@ -1,0 +1,8 @@
+Setup:
+
+Appliquer migration EntityFramework dans PackageManagerConsole
+1 : Add-Migration -Context BarManagementDbContext
+2 :	Update-Database -Context BarManagementDbContext
+3 : Add-Migration -Context ApplicationDbContext
+4 : Update-Database -Context ApplicationDbContext
+	

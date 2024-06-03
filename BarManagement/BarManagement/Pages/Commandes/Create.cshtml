@@ -1,0 +1,67 @@
+﻿@page
+@model BarManagement.Pages.Commandes.CreateModel
+@{
+    ViewData["Title"] = "Passer une commande";
+}
+
+<div class="container m-5">
+    <h3 class="p-0 text-danger">Passer une commande</h3>
+    <hr />
+    <div class="row row-cols-3">
+        @foreach (var produit in Model.Produits)
+        {
+            <div class="col menu-item">
+                <div id="product-info-@produit.Id">
+                    <img src="../assets/img/menu/@produit.Image" class="glightbox menu-img img-fluid" alt="">
+                    <h5>@produit.Designation</h5>
+                    <p class="price">@produit.Prix $</p>
+                    <div class="input-group mb-3">
+                        <form method="post">
+                            <input asp-for="CommandeInputModel.IdProduit" type="hidden" value="@produit.Id" />
+                            <span asp-validation-for="CommandeInputModel.Quantite" class="text-danger"></span>
+                            <div class="input-group">
+                                <span asp-for="CommandeInputModel.Quantite" class="input-group-text">Quantité</span>
+                                <input asp-for="CommandeInputModel.Quantite" type="text" class="form-control" />
+                            </div>
+                            <button type="submit" class="btn btn-sm btn-primary mt-2">Ajouter</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <hr />
+
+    <div>
+        @if (Model.Commande != null)
+        {
+            <h3 class="text-danger">Commande</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Produit</th>
+                        <th>Prix</th>
+                        <th>Quantité</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model.Commande.ProduitsCommandes)
+                    {
+                        <tr>
+                            <td>@item.Produit.Designation</td>
+                            <td>@item.Produit.Prix</td>
+                            <td>@item.Quantite</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <form asp-page-handler="validate" method="post" class="col-3 mt-3">
+                <span asp-validation-for="IdTable" class="text-danger"></span>
+                @Html.DropDownListFor(m => m.IdTable, Model.Tables, "--Choisir numéro de table--", new{@class="form-control"})
+                <button type="submit" class="btn btn-primary mt-2">Valider</button>
+            </form>
+        }
+    </div>
+</div>

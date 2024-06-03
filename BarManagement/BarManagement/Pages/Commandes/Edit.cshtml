@@ -1,0 +1,44 @@
+﻿@page
+@model BarManagement.Pages.Commandes.EditModel
+@{
+    ViewData["Title"] = "Modifier commande";
+}
+
+<div class="container m-5">
+    <div class="row">
+        <h3 class="text-danger p-0">Changer l'état de la commande</h3>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3">
+                Numéro de commande
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Commande.Id)
+            </dd>
+            <dt class="col-sm-3">
+                Numéro de table
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.NumeroTable)
+            </dd>
+            <dt class="col-sm-3">
+                Date Création
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Commande.DateCreation)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Commande.Etat)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Commande.Etat)
+            </dd>
+        </dl>
+        <form method="post" class="col-4 mt-3">
+            <input type="hidden" asp-for="IdCommande" />
+            <span asp-validation-for="Etat" class="text-danger"></span>
+            @Html.DropDownListFor(m => m.Etat, Model.EtatsCommande, "--Choisir l'état de la commande--", new{@class="form-control"})
+            <button type="submit" class="btn btn-primary mt-2">Valider</button>
+        </form>
+    </div>
+</div>

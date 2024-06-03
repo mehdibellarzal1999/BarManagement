@@ -1,0 +1,82 @@
+﻿@page
+@using BarManagement.Model
+@model BarManagement.Pages.Commandes.IndexModel
+@{
+    ViewData["Title"] = "Liste des commandes";
+}
+
+<div class="container m-5">
+    <div class="row">
+        <h3 class="text-danger p-0">Liste des commandes</h3>
+        <hr />
+
+        @if (User.IsInRole("Serveur"))
+        {
+            <a class="btn btn-dark btn-sm col-2 mb-2" asp-page="Create">Passer une commande</a>
+        }
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Numéro de commande
+                    </th>
+                    <th>
+                        Numéro de table
+                    </th>
+                    <th>
+                        Date de création
+                    </th>
+                    <th>
+                        Etat de commande
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Commandes)
+                {
+                    var backgrounColor = string.Empty;
+                    if (item.Etat == EtatCommande.EnCours.ToString())
+                    {
+                        backgrounColor = "bg-warning";
+                    }
+                    if (item.Etat == EtatCommande.Prete.ToString())
+                    {
+                        backgrounColor = "bg-success";
+                    }
+                    if (item.Etat == EtatCommande.Livree.ToString())
+                    {
+                        backgrounColor = "bg-primary";
+                    }
+                    if (item.Etat == EtatCommande.Encaissee.ToString())
+                    {
+                        backgrounColor = "bg-danger";
+                    }
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Table.Numero)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateCreation)
+                        </td>
+                        <td class="@backgrounColor">
+                            @Html.DisplayFor(modelItem => item.Etat)
+                        </td>
+                        <td>
+                            <a asp-page="Edit" asp-route-id="@item.Id">Modifier</a>
+                        </td>
+                        @if (User.IsInRole("Caissier"))
+                        {
+                            <td>
+                                <a asp-page="Details" asp-route-id="@item.Id">Facture</a>
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

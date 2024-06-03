@@ -1,0 +1,38 @@
+﻿@page
+@model BarManagement.Pages.Tables.DeleteModel
+
+@{
+    ViewData["Title"] = "Supprimer une table";
+}
+
+<div class="container m-5">
+    <div class="row">
+        <h3 class="text-danger p-0">Supprimer une table</h3>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                Numéro de table
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Table.Numero)
+            </dd>
+            <dt class="col-sm-2">
+                Capacité
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Table.Capacite)
+            </dd>
+            <dt class="col-sm-2">
+                Etat de table
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Table.Etat)
+            </dd>
+        </dl>
+
+        <form method="post">
+            <input type="hidden" asp-for="Table.Id" />
+            <input type="submit" value="Supprimer" class="btn btn-danger btn-sm col-3 mt-2" />
+        </form>
+    </div>
+</div>

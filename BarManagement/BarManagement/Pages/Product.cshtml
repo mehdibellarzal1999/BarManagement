@@ -1,0 +1,41 @@
+﻿@*@page
+@model BarManagement.Pages.ProductModel
+@{
+}
+
+<div class="container">
+    <div class="row">
+        @foreach (var product in Model.Products)
+        {
+            <div class="col m-3">
+                <div class="card" style="width: 18rem;">
+                    <img src="Images\@product.ImageUrl" width="30" height="300" class="card-img-top" alt="...">
+                    <div id="product-info-@product.Id" class="card-body">
+                        <h5 id="" class="card-title">@product.Name</h5>
+                        <p id="price-@product.id" class="card-text">@product.Price</p>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Quantity</span>
+                            <input id="qty-@product.id" type="text" class="form-control">
+                        </div>
+                        <button id="@product.Id" class="btn btn-sm btn-primary order-btn">Order</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div>
+        <h3>Orders</h3>
+        <table id="order-list">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach()
+            </tbody>
+        </table>
+    </div>
+</div>*@

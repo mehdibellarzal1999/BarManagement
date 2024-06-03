@@ -1,0 +1,37 @@
+﻿@page
+@model BarManagement.Pages.Tables.CreateModel
+
+@{
+    ViewData["Title"] = "Créer une table";
+}
+
+<div class="container m-5">
+    <div class="row">
+        <h3 class="p-0 text-danger">Créer une table</h3>
+        <hr />
+        <div class="col-md-4 p-0">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group m-2">
+                    <label asp-for="Table.Numero" class="control-label mb-1"></label>
+                    <input asp-for="Table.Numero" class="form-control" />
+                    <span asp-validation-for="Table.Numero" class="text-danger"></span>
+                </div>
+                <div class="form-group m-2">
+                    <label asp-for="Table.Capacite" class="control-label mb-1"></label>
+                    <input asp-for="Table.Capacite" class="form-control" />
+                    <span asp-validation-for="Table.Capacite" class="text-danger"></span>
+                </div>
+                <div class="form-group m-2">
+                    <input type="submit" value="Créer" class="btn btn-dark btn-sm col-2 mt-2" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

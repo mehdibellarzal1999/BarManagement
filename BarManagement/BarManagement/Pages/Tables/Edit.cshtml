@@ -1,0 +1,38 @@
+﻿@page
+@model BarManagement.Pages.Tables.EditModel
+
+@{
+    ViewData["Title"] = "Modifier une table";
+}
+
+<div class="container m-5">
+    <div class="row">
+        <h3 class=" text-danger p-0">Modifier une table</h3>
+        <hr />
+        <div class="col-md-4 p-0">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="EditInput.Id" />
+                <div class="form-group m-2">
+                    <label class="control-label mb-1">Numéro</label>
+                    <input asp-for="EditInput.Numero" class="form-control" />
+                    <span asp-validation-for="EditInput.Numero" class="text-danger"></span>
+                </div>
+                <div class="form-group m-2">
+                    <label class="control-label">Capacité</label>
+                    <input asp-for="EditInput.Capacite" class="form-control" />
+                    <span asp-validation-for="EditInput.Capacite" class="text-danger"></span>
+                </div>
+                <div class="form-group m-2">
+                    <input type="submit" value="Sauvegarder" class="btn btn-dark btn-sm col-4 mt-2" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
